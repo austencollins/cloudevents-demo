@@ -6,7 +6,7 @@ provider:
 
 functions:
 
-  # Publisher: Converts native AWS S3 event to a CloudEvent
+  # Publisher: Converts native AWS S3 event to a AWS S3 CloudEvent
   publisher:
     handler: publisher.publisher
     events:
@@ -14,7 +14,7 @@ functions:
           bucket: cloudevents
           event: s3:ObjectCreated:*
 
-  # Subscriber: Subscribes to CloudEvents & processes images
+  # Subscriber: Subscribes to AWS S3 CloudEvents & processes images
   imageSubscriber:
     handler: subscribers.image
     events:

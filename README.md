@@ -2,21 +2,26 @@
 
 This demo showcases interoperability across Serverless Compute/FaaS platforms using [CloudEvents](https://www.github.com/cloudevents/spec).
 
-## Quick-Start
+## Overview
 
-The demo involves a picture of [Dan Kohn](./dan_kohn.jpg) (executive director of the CNCF) being uploaded to an AWS S3 bucket.  When the picture is uploaded, the 'aws.s3.object.created' event is converted into a CloudEvent and routed via a hosted version of [Serverless Inc.'s Event Gateway](https://github.com/serverless/event-gateway) to any FaaS functions subscribed to the event.
+To showcase interoperability, we have:
+
+* 2 event publishers - Azure Storage & AWS S3.  Both publish object created events in the CloudEvents format from their respective platforms.
+* Multiple FaaS functions on several platforms subscribing to BOTH events.
+
+The demo scenario involves a picture of [Dan Kohn](./dan_kohn.jpg) (executive director of the CNCF) being uploaded to an AWS S3 bucket and then Azure storage.  
+
+When the picture is uploaded into one of the storage solutions, either AWS S3 event and Azure Storage event, is converted into a CloudEvent and routed via a hosted version of [Serverless Inc.'s Event Gateway](https://github.com/serverless/event-gateway) to any FaaS functions subscribed to the event.
 
 If you would like to integrate into the demo, create a FaaS function that does something with Dan Kohn's image and posts the result to the CloudEventsDemo twitter feed:
 
 * Make sure your FaaS function has a public HTTP endpoint accessible via a POST method.
-* Give austen@serverless.com your endpoint.
+* Give austen@serverless.com your endpoint.  You should join the CNCF slack team and #cloudevents channel to ask questions.
 * On image upload, we'll route the event to your FaaS function.  The event will be in the request body.
-* The uploaded image is publicly accessible in an AWS S3 bucket and you can grab/process it at the URL below.
+* The uploaded image is publicly accessible in both storage solutions and you can grab/process it at the URL included in the events.
 * Your function should do something interesting with the image and publish the results to Twitter.
 
-### AWS S3 CloudEvent
-
-Here is the event you will receive:
+### CloudEvent: AWS S3
 
 ```javascript
 {
@@ -45,17 +50,21 @@ Here is the event you will receive:
 }
 ```
 
+### CloudEvent: Azure Storage
+
+```javascript
+Coming soon...
+```
+
 ### Your FaaS Function
 
-In the production version of the demo, the URL will be: `https://s3.amazonaws.com/cloudevents/dan_kohn.jpg`
+Your FaaS function should react to BOTH events from AWS S3 & Azure Storage.
+
+For S3: The image URL will be: `https://s3.amazonaws.com/cloudevents/[Insert S3 OBject Key here]`
+
 
 The picture of [Dan](./dan_kohn.jpg) is included in this repo.
 
-To test, you can create a mock event using the structure above and keep the picture of Dan stored in your own S3 bucket or elsewhere:
-
-```javascript
-let url = 'https://s3.amazonaws.com/[Your test s3 bucket]/dan_kohn.jpg'
-```
 
 ### Suggestions:
 

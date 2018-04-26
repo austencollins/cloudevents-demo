@@ -13,6 +13,10 @@ const fn = {
   }
 }
 
+/*
+* Subscriber: AWS Lambda
+*/
+
 eventGateway.registerFunction(fn)
   .then((response) => {
 
@@ -38,3 +42,11 @@ eventGateway.registerFunction(fn)
     console.log('Function Registration Error:')
     console.log(error)
   })
+
+/*
+* Subscriber: Google Cloud Function
+*/
+
+/*
+* Subscriber: Azure Function
+*/
