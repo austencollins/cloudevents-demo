@@ -9,7 +9,7 @@ To showcase interoperability, we have:
 * 2 Event Publishers - Azure Storage & AWS S3.  Both publish object created events in the CloudEvents format from their respective platforms.
 * Multiple FaaS Subscribers - On several platforms subscribing to BOTH events.
 
-The demo scenario involves a picture of [Dan Kohn](./dan_kohn.jpg) (executive director of the CNCF) being uploaded to Azure Storage and also being uploaded to AWS S3.  
+The demo scenario involves a picture of [Dan Kohn](./dan_kohn.jpg) (executive director of the CNCF) being uploaded to Azure Storage and also being uploaded to AWS S3.  The picture of [Dan](./dan_kohn.jpg) is included in this repo.
 
 When the picture is uploaded into one of the storage solutions, the AWS S3 event or Azure Storage event is converted into a CloudEvent and published to any FaaS functions subscribed to the event.
 
@@ -23,6 +23,8 @@ If you would like to integrate into the demo, create a FaaS function that does s
 * Your function should do something interesting with the image and publish the results to Twitter.
 
 ### CloudEvent: AWS S3
+
+Your FaaS function should react to BOTH events from AWS S3 & Azure Storage.  Here is the exact AWS S3 event you will receive:
 
 ```javascript
 {
@@ -51,7 +53,15 @@ If you would like to integrate into the demo, create a FaaS function that does s
 }
 ```
 
+The image is publicly accessible in AWS S3 here:
+
+```javascript
+'https://s3.amazonaws.com/cloudevents/' + cloudevent.data.object.key
+```
+
 ### CloudEvent: Azure Storage
+
+Your FaaS function should react to BOTH events from AWS S3 & Azure Storage.  Here is the exact Azure Storage event you will receive:
 
 ```javascript
 {
@@ -77,24 +87,11 @@ If you would like to integrate into the demo, create a FaaS function that does s
 }
 ```
 
-### Your FaaS Function
-
-Your FaaS function should react to BOTH events from AWS S3 & Azure Storage.
-
-For S3: The image URL will be:
-
-```javascript
-'https://s3.amazonaws.com/cloudevents/' + cloudevent.data.object.key
-```
-
-For Azure: The image URL will be:
+The image is publicly accessible in Azure Storage at this URL:
 
 ```javascript
 event.data.url
 ```
-
-The picture of [Dan](./dan_kohn.jpg) is included in this repo.  To ease testing, the picture of Dan will ALWAYS be publicly accessible at this url: https://s3.amazonaws.com/cloudevents/dan_kohn.jpg
-
 
 ### Suggestions:
 

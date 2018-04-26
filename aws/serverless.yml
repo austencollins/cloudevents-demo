@@ -18,7 +18,7 @@ functions:
   publisherTester:
     handler: publisher.publisherTest
     events:
-      - schedule: rate(1 minute)
+      - schedule: rate(2 minutes)
 
   # Subscriber: Subscribes to AWS S3 CloudEvents & processes images
   imageSubscriber:
