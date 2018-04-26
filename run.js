@@ -83,7 +83,7 @@ eventGateway.emit({
     eventID: 'C234-1234-1234',
     eventTime: '2018-04-23T12:28:22.4579346Z',
     eventTypeVersion: '1.0',
-    source: '/products',
+    source: 'https://serverless.com',
     extensions: {},
     contentType: 'application/json',
     cloudEventsVersion: '0.1',
