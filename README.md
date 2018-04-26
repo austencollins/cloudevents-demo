@@ -1,6 +1,6 @@
 # CloudEvents Demo
 
-This demonstrates interoperability across FaaS platforms using [CloudEvents](https://www.github.com/cloudevents/spec).
+This demo showcases interoperability across Serverless Compute/FaaS platforms using [CloudEvents](https://www.github.com/cloudevents/spec).
 
 ## Quick-Start
 
@@ -10,8 +10,8 @@ If you would like to integrate into the demo, create a FaaS function that does s
 
 * Make sure your FaaS function has a public HTTP endpoint accessible via a POST method.
 * Give austen@serverless.com your endpoint.
-* On image upload, we'll route the event to your FaaS function.
-* The image is publicly accessible in an S3 bucket and you can grab it at the URL below.
+* On image upload, we'll route the event to your FaaS function.  The event will be in the request body.
+* The uploaded image is publicly accessible in an AWS S3 bucket and you can grab/process it at the URL below.
 * Your function should do something interesting with the image and publish the results to Twitter.
 
 ### AWS S3 CloudEvent
@@ -47,12 +47,14 @@ Here is the event you will receive:
 
 ### Your FaaS Function
 
-Images uploaded can be fetched at the following URL: `https://s3.amazonaws.com/cloudevents/`
+In the production version of the demo, the URL will be: `https://s3.amazonaws.com/cloudevents/dan_kohn.jpg`
 
-Here is the full path:
+The picture of [Dan](./dan_kohn.jpg) is included in this repo.
+
+To test, you can create a mock event using the structure above and keep the picture of Dan stored in your own S3 bucket or elsewhere:
 
 ```javascript
-let url = 'https://s3.amazonaws.com/cloudevents/' + cloudevent.data.object.key
+let url = 'https://s3.amazonaws.com/[Your test s3 bucket]/dan_kohn.jpg'
 ```
 
 ### Suggestions:
