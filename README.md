@@ -30,28 +30,28 @@ If you would like to integrate into the demo, create a FaaS function that does s
 
 Your FaaS function should react to BOTH events from AWS S3 & Azure Storage.  Here is the exact AWS S3 event you will receive:
 
-```javascript
+```json
 {
-  eventType: 'aws.s3.object.created',
-  eventID: 'C234-1234-1234',
-  eventTime: '2018-04-26T14:48:09.769Z',
-  eventTypeVersion: '2.0',
-  source: 'https://serverless.com',
-  extensions: {},
-  contentType: 'application/json',
-  cloudEventsVersion: '0.1',
-  data:
-   { s3SchemaVersion: '1.0',
-     configurationId: 'cd267a38-30df-400e-9e3d-d0f1ca6e2410',
-     bucket:
-      { name: 'cloudevents',
-        ownerIdentity: [Object],
-        arn: 'arn:aws:s3:::cloudevents' },
-     object:
-      { key: 'dan_kohn.jpg',
-        size: 444684,
-        eTag: '38b01ff16138d7ca0a0eb3f7a88ff815',
-        sequencer: '005AE1E6A9A3D61490'
+  "eventType": "aws.s3.object.created",
+  "eventID": "C234-1234-1234",
+  "eventTime": "2018-04-26T14:48:09.769Z",
+  "eventTypeVersion": "2.0",
+  "source": "https://serverless.com",
+  "extensions": {},
+  "contentType": "application/json",
+  "cloudEventsVersion": "0.1",
+  "data":
+   { "s3SchemaVersion": "1.0",
+     "configurationId": "cd267a38-30df-400e-9e3d-d0f1ca6e2410",
+     "bucket":
+      { "name": "cloudevents",
+        "ownerIdentity": {},
+        "arn": "arn:aws:s3:::cloudevents" },
+     "object":
+      { "key": "dan_kohn.jpg",
+        "size": 444684,
+        "eTag": "38b01ff16138d7ca0a0eb3f7a88ff815",
+        "sequencer": "005AE1E6A9A3D61490"
       }
     }
 }
@@ -60,14 +60,14 @@ Your FaaS function should react to BOTH events from AWS S3 & Azure Storage.  Her
 The image is publicly accessible in AWS S3 here:
 
 ```javascript
-'https://s3.amazonaws.com/cloudevents/' + cloudevent.data.object.key
+'https://s3.amazonaws.com/' + cloudevent.data.bucket.name + '/' + cloudevent.data.object.key
 ```
 
 ### CloudEvent: Azure Storage
 
 Your FaaS function should react to BOTH events from AWS S3 & Azure Storage.  Here is the exact Azure Storage event you will receive:
 
-```javascript
+```json
 {
    "eventID": "96fb5f0b-001e-0108-6dfe-da6e2806f124",
    "eventTime": "2018-04-23T12:28:22.4579346Z",
