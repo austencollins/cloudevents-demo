@@ -11,7 +11,9 @@ To showcase interoperability, we have:
 
 The demo scenario involves a picture of [Dan Kohn](./dan_kohn.jpg) (executive director of the CNCF) being uploaded to Azure Storage and then also being uploaded to AWS S3.  The picture of [Dan](./dan_kohn.jpg) is included in this repo.
 
-When the picture is uploaded into one of the storage solutions, the AWS S3 event or Azure Storage event is converted into a CloudEvent and published to any FaaS functions subscribed to the event.  The FaaS functions should do something interesting with the photo.  To solve observability in a simple way, all FaaS functions should publish their result to their Twitter account.  This is a fun, easy way to show the audience an event log.  We'll add your Twitter account to a list and show the feed from that list to the audience.  The list is here: https://twitter.com/CloudEventsDemo/lists/demo
+When the picture is uploaded into one of the storage solutions, the AWS S3 event or Azure Storage event is converted into a CloudEvent and published to any FaaS functions subscribed to the event.  The FaaS functions must know how to interpret both events and should do something interesting with the photo.  
+
+To solve observability in a simple way, all FaaS functions should publish the result of their work to their Twitter account.  This is a fun, easy way to show the audience an event log.  We'll add your Twitter account to a list and show the feed from that list to the audience.  The list is here: https://twitter.com/CloudEventsDemo/lists/demo
 
 ## Participate
 
