@@ -6,8 +6,8 @@ This demo showcases interoperability across Serverless Compute/FaaS platforms us
 
 To showcase interoperability, we have:
 
-* 2 event publishers - Azure Storage & AWS S3.  Both publish object created events in the CloudEvents format from their respective platforms.
-* Multiple FaaS functions on several platforms subscribing to BOTH events.
+* 2 Event Publishers - Azure Storage & AWS S3.  Both publish object created events in the CloudEvents format from their respective platforms.
+* Multiple FaaS Subscribers - On several platforms subscribing to BOTH events.
 
 The demo scenario involves a picture of [Dan Kohn](./dan_kohn.jpg) (executive director of the CNCF) being uploaded to an AWS S3 bucket and then Azure storage.  
 
