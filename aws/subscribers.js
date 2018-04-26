@@ -9,13 +9,12 @@ const https = require('https')
 module.exports.image = (event, context, callback) => {
 
   const cloudevent = JSON.parse(event.body)
-  console.log('')
   console.log('CloudEvent Received:')
   console.log(cloudevent)
   console.log('')
 
   // Ensure it's the image
-  if (cloudevent.data.object.key !== 'dan_kohn.jpg') {
+  if (cloudevent.data.object.key !== 'dan_kohn.jpg' || cloudevent.eventType !== 'aws.s3.object.created') {
     return callback(null, {
       statusCode: 200,
       body: JSON.stringify('not a picture of dan kohn'),

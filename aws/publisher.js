@@ -16,6 +16,7 @@ const eventGateway = new SDK({
 module.exports.publisher = (event, context, callback) => {
 
   event = event.Records[0]
+  event.s3.bucket.ownerIdentity = {}
 
   const cloudevent = {
     eventType: 'aws.s3.object.created',
@@ -29,7 +30,7 @@ module.exports.publisher = (event, context, callback) => {
     data: event.s3
   }
 
-  console.log('')
+  console.log('REAL Event Published')
   console.log(cloudevent)
 
   return eventGateway.emit({
@@ -56,7 +57,9 @@ module.exports.publisherTest = (event, context, callback) => {
     eventTime: '2018-04-26T14:48:09.769Z',
     eventTypeVersion: '2.0',
     source: '/',
-    extensions: {},
+    extensions: {
+      test: true
+    },
     contentType: 'application/json',
     cloudEventsVersion: '0.1',
     data:  {
@@ -75,7 +78,7 @@ module.exports.publisherTest = (event, context, callback) => {
     }
   }
 
-  console.log('Test Event Published')
+  console.log('TEST Event Published')
   console.log(cloudevent)
 
   return eventGateway.emit({
