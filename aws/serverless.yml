@@ -5,18 +5,29 @@ provider:
   runtime: nodejs6.10
 
 functions:
-  reviewPublisher:
-    handler: handler.reviewPublisher
+
+  # Publisher: Converts native AWS S3 event to a CloudEvent
+  publisher:
+    handler: publisher.publisher
     events:
       - s3:
           bucket: cloudevents
           event: s3:ObjectCreated:*
-          rules:
-            - suffix: .json
+
+  # Subscriber: Subscribes to CloudEvent & processes JSON
   reviewSubscriber:
-    handler: handler.reviewSubscriber
+    handler: subscribers.review
     events:
       - http:
           path: reviewSubscriber
+          method: post
+          cors: true
+
+  # Subscriber: Subscribes to CloudEvents & processes images
+  imageSubscriber:
+    handler: subscribers.image
+    events:
+      - http:
+          path: imageSubscriber
           method: post
           cors: true

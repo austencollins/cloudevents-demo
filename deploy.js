@@ -22,7 +22,7 @@ eventGateway.registerFunction(fn)
 
     const sub = {
       functionId: process.env.FUNCTION_NAME,
-      event: 'com.ecommerce.product_review.created',
+      event: 'aws.s3.object.created',
       path: '/ac360/'
     }
 

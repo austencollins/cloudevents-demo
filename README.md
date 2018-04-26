@@ -4,40 +4,53 @@ This demonstrates interoperability across FaaS platforms using [CloudEvents](htt
 
 ## Quick-Start
 
-Make sure you have a Node.js version 6.0 or later installed.
+The demo involves a picture of Dan Kohn (executive director of the CNCF) being uploaded to an AWS S3 bucket.  When the picture is uploaded, the 'aws.s3.object.created' event is converted into a CloudEvent and routed via Serverless Inc.'s [Event Gateway](https://github.com/serverless/event-gateway) to any FaaS functions subscribed to the event.
 
-Clone this repo.
+If you would like to integrate into the demo, create a FaaS function that does something with Dan Kohn's image and posts the result to the CloudEventsDemo twitter feed:
 
-In the repo, run `npm install` to install the dependencies.
+* Make sure your FaaS function has a public HTTP endpoint accessible via a POST method.
+* Give austen@serverless.com your endpoint.
+* On image upload, we'll route the event to your FaaS function.
+* The image is publicly accessible in an S3 bucket and you can grab it at the URL below.
+* Your function should do something interesting with the image and publish the results to Twitter.
 
-Create an `.env` file and add the following.  Make sure you come up with a unique function name.
+### AWS S3 CloudEvent
 
+Here is the event you will receive:
+
+```javascript
+{
+  eventType: 'aws.s3.object.created',
+  eventID: 'C234-1234-1234',
+  eventTime: '2018-04-26T14:48:09.769Z',
+  eventTypeVersion: '2.0',
+  source: 'https://serverless.com',
+  extensions: {},
+  contentType: 'application/json',
+  cloudEventsVersion: '0.1',
+  data:
+   { s3SchemaVersion: '1.0',
+     configurationId: 'cd267a38-30df-400e-9e3d-d0f1ca6e2410',
+     bucket:
+      { name: 'cloudevents',
+        ownerIdentity: [Object],
+        arn: 'arn:aws:s3:::cloudevents' },
+     object:
+      { key: 'dan_kohn.jpg',
+        size: 444684,
+        eTag: '38b01ff16138d7ca0a0eb3f7a88ff815',
+        sequencer: '005AE1E6A9A3D61490'
+      }
+    }
+}
 ```
-EG_TOKEN=123123123
-FUNCTION_NAME=randomfunctionname
-FUNCTION_ENDPOINT=yourfunctionendpoint
-```
 
-Once the `.env` file is created and filled in, you can register your function and create your subscriptions by running:
+### Your FaaS Function
 
-```
-$ node deploy
-```
+Images uploaded can be fetched at the following URL: `https://s3.amazonaws.com/cloudevents/`
 
-Verify functions and subscriptions with:
+Here is the full path:
 
-```
-$ node info
-```
-
-When you want to test publishing the `product_review` event, run:
-
-```
-$ node test1
-```
-
-If you need to remove everything and start again, run:
-
-```
-$ node remove
+```javascript
+let url = 'https://s3.amazonaws.com/cloudevents/' + cloudevent.data.object.key
 ```

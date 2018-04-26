@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/vision": "^0.19.0",
     "@serverless/event-gateway-sdk": "^0.3.0",
     "dotenv": "^5.0.1"
   }
