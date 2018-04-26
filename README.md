@@ -1,6 +1,6 @@
 # CloudEvents Demo
 
-This demonstrates interoperability via CloudEvents.
+This demonstrates interoperability across FaaS platforms using [CloudEvents](https://www.github.com/cloudevents/spec).
 
 ## Quick-Start
 
