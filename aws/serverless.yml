@@ -14,15 +14,6 @@ functions:
           bucket: cloudevents
           event: s3:ObjectCreated:*
 
-  # Subscriber: Subscribes to CloudEvent & processes JSON
-  reviewSubscriber:
-    handler: subscribers.review
-    events:
-      - http:
-          path: reviewSubscriber
-          method: post
-          cors: true
-
   # Subscriber: Subscribes to CloudEvents & processes images
   imageSubscriber:
     handler: subscribers.image

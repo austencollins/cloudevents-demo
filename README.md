@@ -4,7 +4,7 @@ This demonstrates interoperability across FaaS platforms using [CloudEvents](htt
 
 ## Quick-Start
 
-The demo involves a picture of Dan Kohn (executive director of the CNCF) being uploaded to an AWS S3 bucket.  When the picture is uploaded, the 'aws.s3.object.created' event is converted into a CloudEvent and routed via Serverless Inc.'s [Event Gateway](https://github.com/serverless/event-gateway) to any FaaS functions subscribed to the event.
+The demo involves a picture of [Dan Kohn](./dan_kohn.jpg) (executive director of the CNCF) being uploaded to an AWS S3 bucket.  When the picture is uploaded, the 'aws.s3.object.created' event is converted into a CloudEvent and routed via a hosted version of [Serverless Inc.'s Event Gateway](https://github.com/serverless/event-gateway) to any FaaS functions subscribed to the event.
 
 If you would like to integrate into the demo, create a FaaS function that does something with Dan Kohn's image and posts the result to the CloudEventsDemo twitter feed:
 
@@ -54,3 +54,14 @@ Here is the full path:
 ```javascript
 let url = 'https://s3.amazonaws.com/cloudevents/' + cloudevent.data.object.key
 ```
+
+### Suggestions:
+
+* Image analysis (identify location, people, unsafe content)
+* Image resizing
+* Apply filters
+* SaaS Integrations (e.g. Slack, Twilio, Stripe).
+* Back-up
+* Analytics
+* Event Tracing
+* Function Portability
