@@ -60,8 +60,17 @@ Coming soon...
 
 Your FaaS function should react to BOTH events from AWS S3 & Azure Storage.
 
-For S3: The image URL will be: `https://s3.amazonaws.com/cloudevents/[Insert S3 OBject Key here]`
+For S3: The image URL will be:
 
+```javascript
+'https://s3.amazonaws.com/cloudevents/' + cloudevent.data.object.key
+```
+
+For Azure: The image URL will be:
+
+```javascript
+Coming soon...
+```
 
 The picture of [Dan](./dan_kohn.jpg) is included in this repo.
 
