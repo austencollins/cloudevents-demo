@@ -1,6 +1,8 @@
 # CloudEvents Demo
 
-### Quick-Start
+This demonstrates interoperability via CloudEvents.
+
+## Quick-Start
 
 Make sure you have a Node.js version 6.0 or later installed.
 
