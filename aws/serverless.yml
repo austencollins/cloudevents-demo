@@ -14,6 +14,12 @@ functions:
           bucket: cloudevents
           event: s3:ObjectCreated:*
 
+  # PublisherTest: Converts native AWS S3 event to a AWS S3 CloudEvent
+  publisherTester:
+    handler: publisher.publisherTest
+    events:
+      - schedule: rate(1 minute)
+
   # Subscriber: Subscribes to AWS S3 CloudEvents & processes images
   imageSubscriber:
     handler: subscribers.image

@@ -9,15 +9,16 @@ To showcase interoperability, we have:
 * 2 Event Publishers - Azure Storage & AWS S3.  Both publish object created events in the CloudEvents format from their respective platforms.
 * Multiple FaaS Subscribers - On several platforms subscribing to BOTH events.
 
-The demo scenario involves a picture of [Dan Kohn](./dan_kohn.jpg) (executive director of the CNCF) being uploaded to an AWS S3 bucket and then Azure storage.  
+The demo scenario involves a picture of [Dan Kohn](./dan_kohn.jpg) (executive director of the CNCF) being uploaded to Azure Storage and also being uploaded to AWS S3.  
 
-When the picture is uploaded into one of the storage solutions, either AWS S3 event and Azure Storage event, is converted into a CloudEvent and routed via a hosted version of [Serverless Inc.'s Event Gateway](https://github.com/serverless/event-gateway) to any FaaS functions subscribed to the event.
+When the picture is uploaded into one of the storage solutions, the AWS S3 event or Azure Storage event is converted into a CloudEvent and published to any FaaS functions subscribed to the event.
 
-If you would like to integrate into the demo, create a FaaS function that does something with Dan Kohn's image and posts the result to the CloudEventsDemo twitter feed:
+If you would like to integrate into the demo, create a FaaS function that does something with images and posts the result to Twitter.
 
 * Make sure your FaaS function has a public HTTP endpoint accessible via a POST method.
-* Give austen@serverless.com your endpoint.  You should join the CNCF slack team and #cloudevents channel to ask questions.
+* Give Austen AND Clemens your FaaS endpoint.  You should join the CNCF slack team and #cloudevents channel to ask questions.
 * On image upload, we'll route the event to your FaaS function.  The event will be in the request body.
+* To help you design your functions, events are published on both platforms every few minutes.  As soon as you give Austen and Clemens your endpoints, they will start publishing test events to you.
 * The uploaded image is publicly accessible in both storage solutions and you can grab/process it at the URL included in the events.
 * Your function should do something interesting with the image and publish the results to Twitter.
 
