@@ -80,7 +80,7 @@ eventGateway.emit({
   event: 'com.ecommerce.product_review.created',
   data: {
     eventType: 'com.ecommerce.product_review.created',
-    eventId: 'C234-1234-1234',
+    eventID: 'C234-1234-1234',
     eventTime: '2018-04-23T12:28:22.4579346Z',
     eventTypeVersion: '1.0',
     source: '/products',
