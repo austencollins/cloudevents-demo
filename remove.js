@@ -6,7 +6,7 @@ const eventGateway = utils.eventGateway
 */
 
 eventGateway.unsubscribe({
-  subscriptionId: 'com.ecommerce.product_review.created,test,%2Fac360%2F'
+  subscriptionId: `com.ecommerce.product_review.created,${process.env.FUNCTION_NAME},%2Fac360%2F`
 })
   .then((response) => {
     console.log('')

@@ -30,10 +30,10 @@ Verify functions and subscriptions with:
 $ node info
 ```
 
-When you want to emit the `product_review` event, run:
+When you want to test publishing the `product_review` event, run:
 
 ```
-$ node emit1
+$ node test1
 ```
 
 If you need to remove everything and start again, run:

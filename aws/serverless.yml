@@ -5,10 +5,18 @@ provider:
   runtime: nodejs6.10
 
 functions:
-  hello:
-    handler: handler.hello
+  reviewPublisher:
+    handler: handler.reviewPublisher
+    events:
+      - s3:
+          bucket: cloudevents
+          event: s3:ObjectCreated:*
+          rules:
+            - suffix: .json
+  reviewSubscriber:
+    handler: handler.reviewSubscriber
     events:
       - http:
-          path: test
+          path: reviewSubscriber
           method: post
           cors: true
