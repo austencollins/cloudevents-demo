@@ -72,7 +72,7 @@ For Azure: The image URL will be:
 Coming soon...
 ```
 
-The picture of [Dan](./dan_kohn.jpg) is included in this repo.
+The picture of [Dan](./dan_kohn.jpg) is included in this repo.  To ease testing, the picture of Dan will ALWAYS be publicly accessible at this url: https://s3.amazonaws.com/cloudevents/dan_kohn.jpg
 
 
 ### Suggestions:
